@@ -1,3 +1,3 @@
-# Backend_desafio_clase20
+# Backend_desafio_clase24_EntregaFinal
 
 Ejercicio terminado.
