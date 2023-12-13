@@ -99,6 +99,9 @@ export default class ProductRepository {
               user: config.USER,
               pass: config.PASS,
             },
+            tls: {
+              rejectUnauthorized: false,
+            }
           });
           const mailOptions = {
             to: producto.owner,

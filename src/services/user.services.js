@@ -179,6 +179,9 @@ export default class UserService {
           user: config.USER,
           pass: config.PASS,
         },
+        tls: {
+          rejectUnauthorized: false,
+        }
       });
 
       if (inactiveUser.length > 0) {
