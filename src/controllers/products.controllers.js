@@ -1,4 +1,4 @@
-import { productService } from "../services/index.js";
+import { productService,userService } from "../services/index.js";
 
 export const getProducts = async (req, res) => {
   try {
@@ -44,9 +44,10 @@ export const getProducts = async (req, res) => {
 export const getProductsRealTime = async (req, res) => {
   try {
     const { user } = req.user;
-    const { first_name, last_name, rol } = user;
+    const { first_name, last_name, rol, email  } = user;
+    const userDB = await userService.getUserByEmail(email)
     let products = await productService.getProducts();
-    if (user.rol === "admin") {
+    if (userDB.rol === "admin" || userDB.rol === "premium") {
       res.render("realtimeproducts", {
         products,
         last_name,

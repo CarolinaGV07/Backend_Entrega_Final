@@ -13,6 +13,7 @@ export default class ProductRepository {
     try {
       const productExist = await this.productDAO.getProductByCode(data.code);
       const userDB = await this.userDAO.getUserByEmail(user.email)
+      console.log(userDB)
       if (productExist) {
         CustomError.createError({
           name: "Error",

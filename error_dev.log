@@ -54,3 +54,8 @@
 {"level":"fatal","message":"Error al obtener el producto","timestamp":"2023-12-11T04:09:13.124Z"}
 {"level":"fatal","message":"Error al obtener el producto","timestamp":"2023-12-11T04:10:44.156Z"}
 {"level":"fatal","message":"Error al loguear el usuario","timestamp":"2023-12-13T18:35:03.396Z"}
+{"level":"fatal","message":"Error al obtener los productos","timestamp":"2023-12-13T19:13:06.422Z"}
+{"level":"fatal","message":"Error al obtener los productos","timestamp":"2023-12-13T19:13:33.820Z"}
+{"level":"fatal","message":"Error al obtener los productos","timestamp":"2023-12-13T19:14:10.001Z"}
+{"level":"fatal","message":"Error al obtener los productos","timestamp":"2023-12-13T19:15:40.914Z"}
+{"level":"fatal","message":"Error al obtener los productos","timestamp":"2023-12-13T19:15:42.017Z"}
