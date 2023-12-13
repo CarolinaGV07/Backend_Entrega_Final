@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
   },
   tls: {
     rejectUnauthorized: false,
-  }
+  },
 });
 
 export default class SessionServices {
@@ -99,7 +99,7 @@ export default class SessionServices {
         from: config.USER,
         to: email,
         subject: "Restablecer tu contraseña",
-        html: `Haz click en el siguiente link para restablecer tu contraseña: http://localhost:8080/api/session/resetPasswordForm/${token}`,
+        html: `Haz click en el siguiente link para restablecer tu contraseña: ${config.session}/resetPasswordForm/${token}`,
       };
       transporter.sendMail(mailOptions, (err, info) => {
         if (err) throw new Error("Error al enviar el mail");

@@ -114,7 +114,7 @@ export const updateProductCartById = async (req, res) => {
     const pid = req.params.pid;
     const cid = req.params.cid;
     await cartService.deleteProductOneCartById(cid, pid);
-    res.redirect("http://localhost:8080/api/carts/user");
+    res.redirect("/api/carts/user");
   } catch (e) {
     req.logger.fatal("Error al actualizar el producto");
     res.status(500).json({ error: e.message });

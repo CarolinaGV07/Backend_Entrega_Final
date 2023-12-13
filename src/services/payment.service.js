@@ -45,12 +45,8 @@ export default class PaymentService {
           quantity: product.quantity,
         })),
         mode: "payment",
-        success_url: `http://localhost:8080/api/payment/sucess?ticketId=${encodeURIComponent(
-          ticket._id
-        )}`,
-        cancel_url: `http://localhost:8080/api/payment/cancel?ticketId=${encodeURIComponent(
-          ticket._id
-        )}`,
+        success_url: config.sucess + `${encodeURIComponent(ticket._id)}`,
+        cancel_url: config.cancell + `${encodeURIComponent(ticket._id)}`,
       });
       return session;
     } catch (e) {
