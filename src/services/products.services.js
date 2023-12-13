@@ -12,6 +12,7 @@ export default class ProductRepository {
   async addProduct(data) {
     try {
       const productExist = await this.productDAO.getProductByCode(data.code);
+      const userDB = await this.userDAO.getUserByEmail(user.email)
       if (productExist) {
         CustomError.createError({
           name: "Error",
@@ -31,7 +32,7 @@ export default class ProductRepository {
         });
       }
 
-      if (user.rol === "admin" || user.rol === "premium") {
+      if (userDB.rol === "admin" || userDB.rol === "premium") {
         const product = await this.productDAO.addProduct(data);
         return product;
       } else {
