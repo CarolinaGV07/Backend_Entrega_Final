@@ -1,0 +1,79 @@
+h2 {
+  margin: 0%;
+  padding: 0%;
+  color: rgb(186, 72, 195);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  font-size: 35px;
+}
+
+.border {
+  border-collapse: collapse;
+  border: solid;
+  border-color: rgba(255, 255, 255, 0.2);
+  margin: 20px;
+}
+
+.head {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  background-color: rgb(156, 127, 184);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.td {
+  padding: 20px 15px;
+}
+
+.tdata {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  background-color: rgb(198, 178, 217);
+  text-align: center;
+  padding: 15px;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+}
+
+.div {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.label {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+}
+
+.input {
+  margin: 5px;
+  border-radius: 5px;
+  width: 100%;
+  height: 30%;
+}
+
+.button {
+  margin-top: 15px;
+  border: solid;
+  border-color: blueviolet;
+  background-color: rgb(199, 174, 223);
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+tbody td:hover {
+  background-color: rgba(243, 103, 199, 0.4);
+}

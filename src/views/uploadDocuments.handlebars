@@ -1,0 +1,117 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">E-commerce</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button
+            class="nav-link btn btn-link"
+            onclick="location.href='/'"
+          >Home</button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link btn btn-link"
+            onclick="location.href='/api/products'"
+          >Products</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link btn btn-link">
+            <a
+              href="/api/users/uploadDocuments"
+              style="text-decoration:none;font-weight:normal;color:#9b9b9b;"
+            >Cargar documentacion</a>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link btn btn-link"
+            onclick="location.href='/api/users/premium/{{_id}}'"
+          >Change to rol</button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link btn btn-link"
+            onclick="location.href='/api/session/logout'"
+          >Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="container mt-4">
+  <h2>Subir Archivos</h2>
+  <form
+    action="/api/users/{{uid}}/documents"
+    method="post"
+    enctype="multipart/form-data"
+  >
+
+    <div class="form-group">
+      <label for="profileImage">Imagen de Perfil: </label>
+      <input
+        type="file"
+        class="form-control-file"
+        name="profileImage"
+        id="profileImage"
+        accept=".jpg,.jpge"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="documentDNI">Documento Nacional de identidad:</label>
+      <input
+        type="file"
+        class="form-control-file"
+        name="documentDNI"
+        id="documentDNI"
+        accept=".pdf, .doc, .docx, .jpg, ,jpge"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="comprobanteDomicilio">Comprobante domicilio:</label>
+      <input
+        type="file"
+        class="form-control-file"
+        name="comprobanteDomicilio"
+        id="comprobanteDomicilio"
+        accept=".pdf, .doc, .docx,.jpg, ,jpge"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="comprobanteEstadoCuenta">Comprobante Estado cuenta:</label>
+      <input
+        type="file"
+        class="form-control-file"
+        name="comprobanteEstadoCuenta"
+        id="comprobanteEstadoCuenta"
+        accept=".pdf, .doc, .docx,.jpg, ,jpge"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="max-width:50%">Subir
+      Archivos</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+></script>

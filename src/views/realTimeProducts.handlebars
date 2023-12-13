@@ -1,0 +1,117 @@
+<h2 style="color:rgb(186, 72, 195)">Products in Real Time</h2>
+
+<div>
+  <form id="rtForm" class="form">
+    <ul>
+      <li>
+        <label class="label"> Title:</label>
+        <input type="text" name="title" class="input" />
+      </li>
+      <li>
+        <label class="label"> Description:</label>
+        <input type="text" name="description" class="input" />
+      </li>
+      <li>
+        <label class="label">Code:</label>
+        <input type="text" name="code" class="input" />
+      </li>
+      <li>
+        <label class="label"> Price: </label>
+        <input type="number" name="price" class="input" />
+      </li>
+      <li>
+        <label class="label"> Status:</label>
+        <input type="text" name="status" class="input" />
+      </li>
+      <li>
+        <label class="label">Stock:</label>
+        <input type="number" name="stock" class="input" />
+      </li>
+      <li>
+        <label class="label">Category:</label>
+        <input type="text" name="category" class="input" />
+      </li>
+      <li>
+        <label class="label">Thumbnail:</label>
+        <input type="text" name="thumbnail" class="input" />
+      </li>
+      <div class="div">
+        <button type="submit" class="button">Enviar</button>
+      </div>
+    </ul>
+  </form>
+</div>
+<div class="div">
+  <table class="border" border="1px">
+    <thead class="head">
+      <tr>
+        <td class="td">ID</td>
+        <td class="td">Title</td>
+        <td class="td">Description</td>
+        <td class="td">Code</td>
+        <td class="td">Price</td>
+        <td class="td">Status</td>
+        <td class="td">Stock</td>
+        <td class="td">Category</td>
+      </tr>
+    </thead>
+    <tbody id="body-table">
+      {{#each products}}
+        <tr>
+          <td class="tdata">{{this._id}}</td>
+          <td class="tdata">{{this.title}}</td>
+          <td class="tdata">{{this.description}}</td>
+          <td class="tdata">{{this.code}}</td>
+          <td class="tdata">{{this.price}}</td>
+          <td class="tdata">{{this.status}}</td>
+          <td class="tdata">{{this.stock}}</td>
+          <td class="tdata">{{this.category}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io()
+
+    document.getElementById('rtForm').onsubmit = e => {
+        e.preventDefault()
+
+        const title = document.querySelector('input[name=title]').value
+        const description = document.querySelector('input[name=description]').value
+        const code = document.querySelector('input[name=code]').value
+        const price = parseInt(document.querySelector('input[name=price]').value)
+        const status = document.querySelector('input[name=status]').value
+        const stock = parseInt(document.querySelector('input[name=stock]').value)
+        const category = document.querySelector('input[name=category]').value
+        const thumbnail = document.querySelector('input[name=thumbnail]').value
+
+        const product = {title,description,code,price,status,stock,category,thumbnail} 
+        console.log(product)
+
+        socket.emit('new-product', product)
+    }
+
+    socket.on('reload-table',products => {
+        console.log(products)
+        const tbody = document.getElementById('body-table')
+
+        let html = '';
+        products.forEach(product => {
+            html += `<tr>
+                <td class="tdata">${product._id}</td>
+                <td class="tdata">${product.title}</td>
+                <td class="tdata">${product.description}</td>
+                <td class="tdata">${product.code}</td>
+                <td class="tdata">${product.price}</td>
+                <td class="tdata">${product.status}</td>
+                <td class="tdata">${product.stock}</td>
+                <td class="tdata">${product.category}</td>
+            </tr>`
+        })
+        console.log(html)
+        tbody.innerHTML = html
+    })
+</script>

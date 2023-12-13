@@ -1,0 +1,30 @@
+<div
+  class="container mt-5"
+  style="background-color: rgb(186, 72, 195);padding:20px"
+>
+  <div class="row">
+    <div class="col-md-6 offset-md-3" style="color: white;">
+      <div class="text-center">
+        <h1>¡Gracias por tu compra! Tu ticket</h1>
+      </div>
+      <div class="mt-4">
+        <h2>Code: {{this.code}}</h2>
+        <h2>Purchase_datetime: {{this.purchase_datetime}}</h2>
+        <h2>Amount:$ {{this.amount}}</h2>
+        <h2>Purchaser: {{this.purcharser}}</h2>
+      </div>
+    </div>
+  </div>
+  <form
+    action="/api/payment/create-checkout-session?ticketId={{this._id}}"
+    method="POST"
+    style="max-width: 30%;margin: 0 auto;"
+  >
+    <button type="submit" class="btn btn-success">Proceed to payment</button>
+  </form>
+</div>
+
+<!-- Agrega los scripts de Bootstrap (JS) al final del documento -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+></script>

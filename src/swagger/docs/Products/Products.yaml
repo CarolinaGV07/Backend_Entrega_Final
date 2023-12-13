@@ -1,0 +1,213 @@
+paths:
+  /api/products:
+    get:
+      summary: Obtiene todos los productos
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Se devolvieron todos los productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Products"
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos 
+    post:
+      summary: Crea un nuevo producto
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema: 
+              $ref: '#/components/requestBodies/addProduct'
+      responses:
+        "200":
+          description: EL producto ha sido creado correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+  /api/products/realtimeProducts:
+    get:
+      summary: Obtiene todos los productos
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Se devolvieron todos los productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Products"
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos 
+  /api/products/{pid}:
+    get:
+      summary: Obtiene un único producto con el ID especificado.
+      tags:
+        - Products
+      parameters: 
+      - name: pid
+        in: path
+        required: true
+        description: ID del producto a buscar
+        schema:
+          $type: string
+      responses:
+        "200":
+          description: El producto ha sido encontrado correctamente
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Products'
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+        "404":
+          description: El producto no ha sido encontrado
+    put:
+      summary: Actualiza un producto
+      tags:
+        - Products
+      parameters: 
+      - name: pid
+        in: path
+        required: true
+        description: ID del producto a buscar
+        schema:
+          $type: string
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema: 
+              $ref: '#/components/requestBodies/addProduct'
+      responses:
+        "200":
+          description: EL producto ha sido actualizado correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+    delete:
+      summary: Elimina
+      tags:
+        - Products
+      parameters: 
+      - name: pid
+        in: path
+        required: true
+        description: ID del producto a buscar
+        schema:
+          $type: string
+      responses:
+        "200":
+          description: EL producto ha sido eliminado correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Identificador único del producto
+        title:
+          type: string
+          description: Nombre del producto (required)
+        description:
+          type: string
+          description: Descripción del producto (required)
+        code:
+          type: string
+          description: Código del producto (required)
+        price:
+          type: number
+          description: Precio del producto (required)
+        status:
+          type: boolean
+          description: Estado del producto (required)
+        stock:
+          type: number
+          description: Stock del producto (required)
+        category:
+          type: string
+          description: Categoría del producto (required)
+        thumbnail:
+          type: string
+          description: Imagen del producto (required)
+        owner:
+          type: string
+          description: Dueño del producto (required)
+      example:
+        title: Limpieza facial profunda
+        description: Atención manual
+        code: ABC123
+        price: 8000
+        status: true
+        stock: 9994
+        category: bueno
+        thumbnail: https://acortar.link/SLS5hS
+        owner: https://firebasestorage.googleapis.com/v0/b/e-commerce-react-pf.appspo…
+  requestBodies:
+    addProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nombre del producto (required)
+        description:
+          type: string
+          description: Descripción del producto (required)
+        code:
+          type: string
+          description: Código del producto (required)
+        price:
+          type: number
+          description: Precio del producto (required)
+        status:
+          type: boolean
+          description: Estado del producto (required)
+        stock:
+          type: number
+          description: Stock del producto (required)
+        category:
+          type: string
+          description: Categoría del producto (required)
+        thumbnail:
+          type: string
+          description: Imagen del producto (required)
+        owner:
+            type: string
+            description: Dueño del producto (required)
+      example:
+        title: Limpieza facial profunda
+        description: Atención manual
+        code: "ABC124"
+        price: 8000
+        status: true
+        stock: 9994
+        category: bueno
+        thumbnail: "https://acortar.link/SLS5hS"
+        owner: "adminCoder@coder.com"

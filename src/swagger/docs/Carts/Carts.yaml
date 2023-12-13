@@ -1,0 +1,170 @@
+paths:
+  /api/cart:
+    post:
+      summary: Crea un nuevo carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito ha sido creado correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Carts"
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+  /api/cart/user:
+    get:
+      summary: Devuelve el carrito de un usuario
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito ha sido devuelto correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Carts"
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+        "404":
+          description: El carrito no ha sido encontrado
+  /api/cart/pid/{pid}:
+    get:
+      summary: Agrega un producto al carrito del usuario
+      tags:
+        - Carts
+      parameters: 
+      - name: pid
+        in: path
+        required: true
+        description: ID del producto a agregar
+        schema:
+          $type: string
+      responses:
+        "200":
+          description: El producto ha sido agregado al carrito correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Carts"
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+        "404":
+          description: El producto no ha sido encontrado y no se ha podido agregar al carrito. O el carrito no se encontró
+  /api/cart/delete/{pid}:
+    get:
+      summary: Elimina del carrito del usuario un producto, con la cantidad pasada o lo elimina si la cantidad llega a 0
+      tags:
+        - Carts
+      parameters: 
+      - name: pid
+        in: path
+        required: true
+        description: ID del producto a agregar
+        schema:
+          $type: string
+      responses:
+        "200":
+          description: El producto ha sido removido o decrementado su cantidad del carrito correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Carts"
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+        "404":
+          description: No se encontró el producto en el carrito o no se encontró el carrito
+  /api/cart/{cid}:    
+    get:
+      summary: Devuelve el carrito de un user
+      tags:
+        - Carts
+      parameters: 
+      - name: cid
+        in: path
+        required: true
+        description: ID del carrito a buscar
+        schema:
+          $type: string
+      responses:
+        "200":
+          description: El carrito ha sido devuelto correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Carts"
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+        "404":
+          description: El carrito no se encontró
+  /api/cart/{cid}/purchase:    
+    get:
+      summary: Genera el ticket de un carrito
+      tags:
+        - Carts
+      parameters: 
+      - name: cid
+        in: path
+        required: true
+        description: ID del carrito al que se le va a generar el ticket
+        schema:
+          $type: string
+      responses:
+        "200":
+          description: El ticket se ha generado correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Carts"
+        "500":
+          description: Error interno del servidor. Usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+        "404":
+          description: El carrito no se encontró
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID del carrito
+        products:
+          type: array
+          description: Productos del carrito
+          items:
+            type: object
+            properties:
+              pid:
+                type: string
+                description: ID del producto
+              quantity:
+                type: number
+                description: Cantidad del producto
+              _id:
+                type: string
+                description: ID del producto en el carrito
+      example:
+        _id: "652833b0fdd367cbc2067ed5"
+        products:
+          - pid: "64da7e61d64c7d0c6d674c52"
+            quantity: 1
+            _id: "652854f57aeb24b820c1aa2a"
+          - pid: "64da7e45d64c7d0c6d674c4e"
+            quantity: 1
+            _id: "652854ff7aeb24b820c1aa43"
+          - pid: "64da7efed64c7d0c6d674c62"
+            quantity: 1
+            _id: "6528550a7aeb24b820c1aa60"

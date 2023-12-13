@@ -1,0 +1,153 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">E-commerce</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <button class="nav-link btn btn-link" onclick="location.href='/'">Home</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-link" onclick="location.href='/profile'">Profile</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-link" onclick="location.href='/api/chat'">Chat</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-link" onclick="location.href='/api/session/logout'">Logout</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+      <div>
+        <h2>Bienvenido/a {{first_name}} ({{rol}})</h2>
+      </div>
+    </header>
+    <main>
+      <div class="divTitle">
+        <h1 id="h1">Productos</h1>
+      </div>
+
+      <div class="container text-center">
+        <div class="col-md my-3 cardProducts">
+          {{#each products}}
+            <div class="col">
+              <div class="card" style="width: 18rem;">
+                <img
+                  src="{{thumbnail}}"
+                  alt="Imagen del tratamiento"
+                  class="card-img-top img-fluid img-thumbnail imgcard"
+                  style="height:300px"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{{title}}</h5>
+                  <p>Precio: ${{price}}</p>
+                  <p>Categoría: {{category}}</p>
+                  <a
+                    class="btn btn-secondary"
+                    href="/api/cart/pid/{{_id}}"
+                  >Add to cart</a>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+
+      <nav aria-label="Page navigation" style="width:20%;margin: 0 auto;">
+        <ul class="pagination justify-content-center" style="gap: 5px;">
+          {{#if productsPrev}}
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="{{productsPrev}}"
+                aria-label="Anterior"
+                style="height: 40px;width:40px;display:flex;align-items:center;justify-content:center;background-color:rgb(186, 72, 195);
+          font-weight:bold;font-size:1.5rem;"
+              >
+                <span aria-hidden="true" style="color: white;">&laquo;</span>
+              </a>
+            </li>
+          {{/if}}
+          {{#if productsPrevValidate}}
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="{{productsPrev}}"
+                aria-label="Anterior"
+                style="height: 40px;width:40px;display:flex;align-items:center;justify-content:center;background-color:rgb(186, 72, 195);
+          font-weight:bold;font-size:1.5rem;color:white;"
+              >
+                {{productsPrevValidate}}
+              </a>
+            </li>
+          {{/if}}
+          {{#if productsNextValidate}}
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="{{productsNext}}"
+                aria-label="Anterior"
+                style="height: 40px;width:40px;display:flex;align-items:center;justify-content:center;background-color:rgb(186, 72, 195);
+          font-weight:bold;font-size:1.5rem;color:white"
+              >
+                {{productsNextValidate}}
+              </a>
+            </li>
+          {{/if}}
+          <!-- Puedes agregar más elementos de paginación si es necesario -->
+          {{#if productsNext}}
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="{{productsNext}}"
+                aria-label="Siguiente"
+                style="height: 40px;width:40px;display:flex;align-items:center;justify-content:center;background-color:rgb(186, 72, 195);
+          font-weight:bold;font-size:1.5rem;color:white"
+              >
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          {{/if}}
+        </ul>
+      </nav>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/static/js/products.js"></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+  </body>
+
+</html>
